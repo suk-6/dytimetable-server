@@ -1,7 +1,7 @@
 const Timetable = require('comcigan-parser');
 const cron = require("node-cron");
-require("dotenv").config();
 const push = require('./push');
+require("dotenv").config();
 
 class TimetableService {
     constructor(timetable = new Timetable()) {
