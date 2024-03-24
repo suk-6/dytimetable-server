@@ -1,12 +1,15 @@
 {
-  "name": "dytimetable-server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "comcigan-parser": "^1.0.0",
-    "dotenv": "^16.4.5",
-    "firebase-admin": "^12.0.0",
-    "node-cron": "^3.0.3"
-  }
+	"name": "dytimetable-server",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"dependencies": {
+		"comcigan-parser": "^1.0.0",
+		"dotenv": "^16.4.5",
+		"firebase-admin": "^12.0.0",
+		"node-cron": "^3.0.3"
+	},
+	"scripts": {
+		"start": "node index.js"
+	}
 }
