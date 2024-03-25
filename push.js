@@ -10,14 +10,37 @@ class PushService {
         });
     }
 
-    async sendNotificationToAll(title, body) {
-        const message = {
+    async messageGenerator(title, body, topic) {
+        return {
             notification: {
                 title,
-                body,
+                body
             },
-            topic: 'all',
-        };
+            topic,
+            android: {
+                priority: "high",
+                ttl: 10 * 60 * 1000, // 10 minutes
+                notification: {
+                    sound: "default"
+                }
+            },
+            apns: {
+                headers: {
+                    "apns-priority": "10",
+                    "apns-expiration": "600", // 10 minutes
+                },
+                payload: {
+                    aps: {
+                        badge: 0,
+                        sound: "default"
+                    }
+                }
+            }
+        }
+    }
+
+    async sendNotificationToAll(title, body) {
+        const message = await this.messageGenerator(title, body, 'all');
 
         try {
             await admin.messaging().send(message);
@@ -27,13 +50,7 @@ class PushService {
     }
 
     async sendNotificationByTopic(topic, title, body) {
-        const message = {
-            notification: {
-                title,
-                body,
-            },
-            topic,
-        };
+        const message = await this.messageGenerator(title, body, topic);
 
         try {
             await admin.messaging().send(message);
