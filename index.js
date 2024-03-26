@@ -29,6 +29,44 @@ class TimetableService {
         }
     }
 
+    async checkSportsDay(grade, classroom) {
+        const now = new Date();
+        const timetable = await this.timetable.getTimetable();
+        const todayTimetableByClass = timetable[grade][classroom][now.getDay() - 1];
+        for (let period = 0; period < todayTimetableByClass.length; period++) {
+            if (['체육A', '체육A', '스포츠'].includes(todayTimetableByClass[period]["subject"])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    async sendSportsAlert() {
+        const now = new Date();
+        if (now.getDay() === 0 || now.getDay() === 6) return;
+
+        const currentTime = now.getTime();
+        const morningTime = await this.getMonringTime();
+
+        if (currentTime === morningTime.getTime()) {
+            for (let grade = 1; grade <= Object.keys(timetable).length; grade++) {
+                for (let classroom = 1; classroom <= Object.keys(timetable[grade]).length; classroom++) {
+                    if (await this.checkSportsDay(grade, classroom)) {
+                        push.sendNotificationByTopic(`${grade}-${classroom}`, `체육복 알림`, `오늘 ${parseInt(period) + 1}교시에 체육이 있습니다. 체육복을 챙겨주세요.`);
+                    }
+                }
+            }
+        }
+    }
+
+    async getMonringTime() {
+        const now = new Date();
+        now.setHours(7);
+        now.setMinutes(0);
+
+        return now;
+    }
 
     async checkClassTime() {
         const now = new Date();
