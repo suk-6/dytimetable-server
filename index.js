@@ -10,10 +10,14 @@ class TimetableService {
             timetable.setSchool(process.env.SCHOOL_CODE);
             this.classTimes = timetable.getClassTime();
             this.setSchedule();
+            this.isSetted = true;
         });
     }
 
     async getTimetable() {
+        if (!this.isSetted) {
+            return "Timetable is not setted yet.";
+        }
         return await this.timetable.getTimetable();
     }
 
