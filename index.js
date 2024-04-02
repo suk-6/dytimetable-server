@@ -13,6 +13,10 @@ class TimetableService {
         });
     }
 
+    async getTimetable() {
+        return await this.timetable.getTimetable();
+    }
+
     async sendTimetable(period) {
         const now = new Date();
         const timetable = await this.timetable.getTimetable();
@@ -90,6 +94,7 @@ class TimetableService {
     }
 
     async setSchedule() {
+        console.log("Setting schedule...")
         cron.schedule("* 6-17 * * 1-5", async () => {
             const period = await this.checkClassTime();
             if (period === undefined) return;
@@ -99,4 +104,4 @@ class TimetableService {
     }
 }
 
-new TimetableService();
+module.exports = TimetableService;
