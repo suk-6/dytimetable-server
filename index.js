@@ -90,7 +90,7 @@ class TimetableService {
     }
 
     async setSchedule() {
-        cron.schedule("* 7-17 * * 1-5", async () => {
+        cron.schedule("* 6-17 * * 1-5", async () => {
             const period = await this.checkClassTime();
             if (period === undefined) return;
 
