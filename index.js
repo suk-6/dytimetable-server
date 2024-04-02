@@ -42,7 +42,7 @@ class TimetableService {
         const timetable = await this.timetable.getTimetable();
         const todayTimetableByClass = timetable[grade][classroom][now.getDay() - 1];
         for (let period = 0; period < todayTimetableByClass.length; period++) {
-            if (['체육A', '체육A', '스포츠'].includes(todayTimetableByClass[period]["subject"])) {
+            if (['체육A', '체육B', '스포츠'].includes(todayTimetableByClass[period]["subject"])) {
                 return true;
             }
         }
@@ -57,7 +57,7 @@ class TimetableService {
         const currentTime = now.getTime();
         const morningTime = await this.getMonringTime();
 
-        if (currentTime === morningTime.getTime()) {
+        if (currentTime.toString().slice(0, 8) === morningTime.getTime().toString().slice(0, 8)) {
             for (let grade = 1; grade <= Object.keys(timetable).length; grade++) {
                 for (let classroom = 1; classroom <= Object.keys(timetable[grade]).length; classroom++) {
                     if (await this.checkSportsDay(grade, classroom)) {
