@@ -11,9 +11,6 @@ app.get('/install', async (req, res) => {
     else if (UA.includes('iPhone')) {
         res.redirect('itms-apps://itunes.apple.com/kr/app/apple-store/6479954739');
     }
-    else {
-        res.send('PC');
-    }
 });
 
 app.get('/getTable/:grade/:classroom', async (req, res) => {
