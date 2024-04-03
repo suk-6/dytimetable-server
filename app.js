@@ -9,7 +9,7 @@ app.get('/install', async (req, res) => {
         res.redirect('market://details?id=com.dukyoung.dytimetable');
     }
     else if (UA.includes('iPhone')) {
-        res.send('iPhone');
+        res.redirect('itms-apps://itunes.apple.com/kr/app/apple-store/6479954739');
     }
     else {
         res.send('PC');
