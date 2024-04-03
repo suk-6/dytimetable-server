@@ -3,9 +3,17 @@ const app = express();
 const TimetableService = require('./index');
 const timetableService = new TimetableService();
 
-app.get('/getTable', async (req, res) => {
-    const timetable = await timetableService.getTimetable();
-    res.json(timetable);
+app.get('/install', async (req, res) => {
+    const UA = req.headers['user-agent'];
+    if (UA.includes('Android')) {
+        res.send('Android');
+    }
+    else if (UA.includes('iPhone')) {
+        res.send('iPhone');
+    }
+    else {
+        res.send('PC');
+    }
 });
 
 app.get('/getTable/:grade/:classroom', async (req, res) => {
