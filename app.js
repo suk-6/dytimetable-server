@@ -1,16 +1,10 @@
 const express = require('express');
 const app = express();
-const TimetableService = require('./index');
-const timetableService = new TimetableService();
+// const TimetableService = require('./index');
+// const timetableService = new TimetableService();
 
 app.get('/install', async (req, res) => {
-    const UA = req.headers['user-agent'];
-    if (UA.includes('Android')) {
-        res.redirect('market://details?id=com.dukyoung.dytimetable');
-    }
-    else if (UA.includes('iPhone')) {
-        res.redirect('itms-apps://itunes.apple.com/kr/app/apple-store/6479954739');
-    }
+    res.sendFile(__dirname + '/static/install.html');
 });
 
 app.get('/getTable/:grade/:classroom', async (req, res) => {
