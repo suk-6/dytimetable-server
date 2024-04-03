@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-// const TimetableService = require('./index');
-// const timetableService = new TimetableService();
+const TimetableService = require('./index');
+const timetableService = new TimetableService();
 
 app.get('/', async (req, res) => {
     res.redirect('https://github.com/suk-6/dytimetable');
