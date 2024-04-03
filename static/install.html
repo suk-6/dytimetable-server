@@ -5,12 +5,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>덕영시간표 설치</title>
 		<style>
+			body {
+				background-color: #006dbb;
+			}
+
 			#main {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				height: 30rem;
+			}
+
+			#title {
+				font-size: 3rem;
+				color: white;
 			}
 
 			@media screen and (max-width: 600px) {
@@ -40,7 +49,7 @@
 	</head>
 	<body>
 		<div id="main">
-			<h1>덕영시간표</h1>
+			<h1 id="title">덕영시간표</h1>
 			<div id="downloadImages">
 				<div id="playstoreDownload">
 					<a
