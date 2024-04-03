@@ -6,7 +6,7 @@ const timetableService = new TimetableService();
 app.get('/install', async (req, res) => {
     const UA = req.headers['user-agent'];
     if (UA.includes('Android')) {
-        res.redirect('https://play.google.com/store/apps/details?id=com.dukyoung.dytimetable');
+        res.redirect('market://details?id=com.dukyoung.dytimetable');
     }
     else if (UA.includes('iPhone')) {
         res.send('iPhone');
