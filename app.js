@@ -44,6 +44,7 @@ app.get('/getmeal', async (req, res) => {
         else result[1] = [true, result.title, result.diet, result.kcal]
     });
 
+    console.log("🚀 ~ awaitneisService.getDiet ~ result:", result)
     res.json(result);
 });
 
