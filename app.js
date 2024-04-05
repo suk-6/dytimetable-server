@@ -21,7 +21,7 @@ app.get('/getTable/:grade/:classroom', async (req, res) => {
     res.json(timetable[grade][classroom]);
 });
 
-app.get('/getDiet', async (req, res) => {
+app.get('/getmeal', async (req, res) => {
     const result = [];
 
     const now = new Date();
