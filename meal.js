@@ -8,7 +8,7 @@ class NeisService {
         return response.json();
     }
 
-    async getDiet(day) {
+    async getDiet(month, day) {
         try {
             const dietInfo = (await this.getDietInfo(day))
                 .mealServiceDietInfo[1].row[0];
