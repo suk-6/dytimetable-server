@@ -27,7 +27,7 @@ class NeisService {
             const result = [
                 true,
                 `${month}월 ${day}일 급식`,
-                `${diet}\n${kcal}`,
+                `${diet}\n\n${kcal}`,
             ];
 
             return result;
