@@ -10,6 +10,7 @@ class NeisService {
 
     async getDiet(month, day) {
         try {
+            console.log(Object.keys((await this.getDietInfo(day))))
             const dietInfo = (await this.getDietInfo(day))
                 .mealServiceDietInfo[1].row[0];
 
