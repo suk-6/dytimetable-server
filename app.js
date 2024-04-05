@@ -35,11 +35,13 @@ app.get('/getmeal', async (req, res) => {
     const tomorrow = `${year}${month < 10 ? `0${month}` : month}${day < 10 ? `0${day}` : day}`;
 
     await neisService.getDiet(month, today).then((result) => {
-        result[0] = [result.title, result.diet, result.kcal]
+        if (!result.status) result[0] = [false];
+        else result[0] = [true, result.title, result.diet, result.kcal]
     });
 
     await neisService.getDiet(month, tomorrow).then((result) => {
-        result[1] = [result.title, result.diet, result.kcal]
+        if (!result.status) result[1] = [false];
+        else result[1] = [true, result.title, result.diet, result.kcal]
     });
 
     res.json(result);
