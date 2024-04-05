@@ -22,7 +22,7 @@ app.get('/getTable/:grade/:classroom', async (req, res) => {
 });
 
 app.get('/getmeal', async (req, res) => {
-    const result = [[], []];
+    let result = [[], []];
 
     const now = new Date();
     const year = now.getFullYear();
