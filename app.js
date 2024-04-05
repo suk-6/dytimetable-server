@@ -22,7 +22,7 @@ app.get('/getTable/:grade/:classroom', async (req, res) => {
 });
 
 app.get('/getmeal', async (req, res) => {
-    let result = [[], []];
+    let data = [[], []];
 
     const now = new Date();
     const year = now.getFullYear();
@@ -36,16 +36,16 @@ app.get('/getmeal', async (req, res) => {
 
     await neisService.getDiet(month, today).then((result) => {
         console.log(result.diet)
-        if (!result.status) result[0] = [false];
-        else result[0] = [true, result.title, result.diet, result.kcal]
+        if (!result.status) data[0] = [false];
+        else data[0] = [true, result.title, result.diet, result.kcal]
     });
 
     await neisService.getDiet(month, tomorrow).then((result) => {
-        if (!result.status) result[1] = [false];
-        else result[1] = [true, result.title, result.diet, result.kcal]
+        if (!result.status) data[1] = [false];
+        else data[1] = [true, result.title, result.diet, result.kcal]
     });
 
-    res.json(result);
+    res.json(data);
 });
 
 app.listen(3000, () => {
