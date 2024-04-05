@@ -25,20 +25,16 @@ app.get('/getmeal', async (req, res) => {
     let data = [];
 
     const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const tomorrow = new Date(today.setDate(today.getDate() + 1));
+    console.log("🚀 ~ app.get ~ today:", today)
+    console.log("🚀 ~ app.get ~ tomorrow:", tomorrow)
 
-    let day = now.getDate();
-    const today = `${year}${month < 10 ? `0${month}` : month}${day < 10 ? `0${day}` : day}`;
-
-    day = now.getDate() + 1;
-    const tomorrow = `${year}${month < 10 ? `0${month}` : month}${day < 10 ? `0${day}` : day}`;
-
-    await neisService.getDiet(month, today).then((result) => {
+    await neisService.getDiet(date).then((result) => {
         data[0] = result
     });
 
-    await neisService.getDiet(month, tomorrow).then((result) => {
+    await neisService.getDiet(date).then((result) => {
         data[1] = result
     });
 
