@@ -24,9 +24,9 @@ app.get('/getTable/:grade/:classroom', async (req, res) => {
 app.get('/getmeal', async (req, res) => {
     let data = [];
 
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const tomorrow = new Date(today.setDate(today.getDate() + 1));
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
     console.log("🚀 ~ app.get ~ today:", today)
     console.log("🚀 ~ app.get ~ tomorrow:", tomorrow)
 
