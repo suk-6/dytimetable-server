@@ -27,8 +27,6 @@ app.get('/getmeal', async (req, res) => {
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
-    console.log("🚀 ~ app.get ~ today:", today)
-    console.log("🚀 ~ app.get ~ tomorrow:", tomorrow)
 
     await neisService.getDiet(today).then((result) => {
         data[0] = result
