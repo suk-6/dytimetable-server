@@ -9,12 +9,12 @@ class NeisService {
     }
 
     async getDiet(date) {
-        try {
-            const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
-            const dayString = `${year}${month < 10 ? `0${month}` : month}${day < 10 ? `0${day}` : day}`;
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const dayString = `${year}${month < 10 ? `0${month}` : month}${day < 10 ? `0${day}` : day}`;
 
+        try {
             const dietInfo = (await this.getDietInfo(dayString))
                 .mealServiceDietInfo[1].row[0];
 
@@ -35,6 +35,7 @@ class NeisService {
             // console.error(error);
             return [
                 false,
+                `${month}월 ${day}일 급식`
             ];
         }
     }
