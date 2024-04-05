@@ -25,9 +25,6 @@ app.get('/getmeal', async (req, res) => {
     let data = [];
 
     const day = new Date();
-    // test
-    day.setDate(day.getDate() + 10);
-
     for (i = 0; i < 3; i++) {
         await neisService.getDiet(day).then((result) => {
             data[i] = result

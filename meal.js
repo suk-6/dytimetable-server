@@ -14,6 +14,9 @@ class NeisService {
         const day = date.getDate();
         const dayString = `${year}${month < 10 ? `0${month}` : month}${day < 10 ? `0${day}` : day}`;
 
+        const week = ['일', '월', '화', '수', '목', '금', '토'];
+        const dayOfWeek = week[date.getDay()];
+
         try {
             const dietInfo = (await this.getDietInfo(dayString))
                 .mealServiceDietInfo[1].row[0];
@@ -26,7 +29,7 @@ class NeisService {
 
             const result = [
                 true,
-                `${month}월 ${day}일 급식`,
+                `${month}월 ${day}일 (${dayOfWeek}) 급식`,
                 `${diet}\n\n${kcal}`,
             ];
 
@@ -35,7 +38,7 @@ class NeisService {
             // console.error(error);
             return [
                 false,
-                `${month}월 ${day}일 급식`
+                `${month}월 ${day}일 (${dayOfWeek}) 급식`
             ];
         }
     }
