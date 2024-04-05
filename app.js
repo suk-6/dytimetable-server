@@ -22,7 +22,7 @@ app.get('/getTable/:grade/:classroom', async (req, res) => {
 });
 
 app.get('/getmeal', async (req, res) => {
-    const result = [];
+    const result = [[], []];
 
     const now = new Date();
     const year = now.getFullYear();
@@ -44,7 +44,6 @@ app.get('/getmeal', async (req, res) => {
         else result[1] = [true, result.title, result.diet, result.kcal]
     });
 
-    console.log("🚀 ~ awaitneisService.getDiet ~ result:", result)
     res.json(result);
 });
 
