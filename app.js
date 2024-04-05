@@ -28,7 +28,7 @@ app.get('/getmeal', async (req, res) => {
 
     for (i = 0; i < 3; i++) {
         await neisService.getDiet(day).then((result) => {
-            data[0] = result
+            data[i] = result
         });
 
         day.setDate(day.getDate() + 1);
