@@ -24,19 +24,18 @@ class NeisService {
             const kcal = dietInfo.CAL_INFO;
 
 
-            const result = {
-                status: true,
-                title: `${month}월 ${day}일 급식`,
-                diet,
-                kcal,
-            };
+            const result = [
+                true,
+                `${month}월 ${day}일 급식`,
+                `${diet}\n${kcal}`,
+            ];
 
             return result;
         } catch (error) {
             // console.error(error);
-            return {
-                status: false,
-            };
+            return [
+                false,
+            ];
         }
     }
 }
