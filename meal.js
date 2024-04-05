@@ -28,7 +28,7 @@ class NeisService {
 
             return result;
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             return {
                 status: false,
             };
