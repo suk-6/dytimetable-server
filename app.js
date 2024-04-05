@@ -30,11 +30,11 @@ app.get('/getmeal', async (req, res) => {
     console.log("🚀 ~ app.get ~ today:", today)
     console.log("🚀 ~ app.get ~ tomorrow:", tomorrow)
 
-    await neisService.getDiet(date).then((result) => {
+    await neisService.getDiet(today).then((result) => {
         data[0] = result
     });
 
-    await neisService.getDiet(date).then((result) => {
+    await neisService.getDiet(tomorrow).then((result) => {
         data[1] = result
     });
 
