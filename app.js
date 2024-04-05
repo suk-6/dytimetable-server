@@ -24,17 +24,15 @@ app.get('/getTable/:grade/:classroom', async (req, res) => {
 app.get('/getmeal', async (req, res) => {
     let data = [];
 
-    const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
+    const day = new Date();
 
-    await neisService.getDiet(today).then((result) => {
-        data[0] = result
-    });
+    for (i = 0; i < 3; i++) {
+        await neisService.getDiet(day).then((result) => {
+            data[0] = result
+        });
 
-    await neisService.getDiet(tomorrow).then((result) => {
-        data[1] = result
-    });
+        day.setDate(day.getDate() + 1);
+    }
 
     res.json(data);
 });
