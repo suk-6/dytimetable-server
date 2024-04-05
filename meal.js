@@ -3,7 +3,7 @@ class NeisService {
 
     async getDietInfo(dayString) {
         const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${process.env.NEIS_API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=J10&SD_SCHUL_CODE=7531328&MLSV_YMD=${dayString}`;
-        const response = await fetch(url);
+        const response = await fetch(url, { cache: "force-cache" });
 
         return response.json();
     }
