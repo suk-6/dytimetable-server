@@ -100,6 +100,7 @@ class TimetableService {
     async setSchedule() {
         console.log("Setting schedule...")
         cron.schedule("* 6-17 * * 1-5", async () => {
+            this.sendSportsAlert();
             const period = await this.checkClassTime();
             if (period === undefined) return;
 
