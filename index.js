@@ -54,10 +54,10 @@ class TimetableService {
         const now = new Date();
         if (now.getDay() === 0 || now.getDay() === 6) return;
 
-        const currentTime = now.getTime();
         const morningTime = await this.getMonringTime();
+        const timetable = await this.timetable.getTimetable();
 
-        if (currentTime.toString().slice(0, 8) === morningTime.getTime().toString().slice(0, 8)) {
+        if (now.getHours() === morningTime.getHours() && now.getMinutes() === morningTime.getMinutes()) {
             for (let grade = 1; grade <= Object.keys(timetable).length; grade++) {
                 for (let classroom = 1; classroom <= Object.keys(timetable[grade]).length; classroom++) {
                     if (await this.checkSportsDay(grade, classroom)) {
