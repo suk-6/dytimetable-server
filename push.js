@@ -10,13 +10,14 @@ class PushService {
         });
     }
 
-    async messageGenerator(title, body, topic) {
+    async messageGenerator(title, body, topic, data) {
         return {
             notification: {
                 title,
                 body
             },
             topic,
+            data: data || {},
             android: {
                 priority: "high",
                 ttl: 10 * 60 * 1000, // 10 minutes
@@ -39,8 +40,8 @@ class PushService {
         }
     }
 
-    async sendNotificationToAll(title, body) {
-        const message = await this.messageGenerator(title, body, 'all');
+    async sendNotificationToAll(title, body, data) {
+        const message = await this.messageGenerator(title, body, 'all', data);
 
         try {
             await admin.messaging().send(message);
@@ -49,8 +50,8 @@ class PushService {
         }
     }
 
-    async sendNotificationByTopic(topic, title, body) {
-        const message = await this.messageGenerator(title, body, topic);
+    async sendNotificationByTopic(topic, title, body, data) {
+        const message = await this.messageGenerator(title, body, topic, data);
 
         try {
             await admin.messaging().send(message);
