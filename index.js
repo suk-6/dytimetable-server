@@ -32,7 +32,9 @@ class TimetableService {
                 const subject = todayTimetableByClass[period]["subject"];
                 if (subject === '') continue;
 
-                push.sendNotificationByTopic(`${grade}-${classroom}`, `다음 시간 알림`, `${parseInt(period) + 1}교시 [${subject}] 입니다.`);
+                const classTime = todayTimetableByClass[period]["classTime"];
+
+                push.sendNotificationByTopic(`${grade}-${classroom}`, `다음 시간 알림`, `${classTime}교시 [${subject}] 입니다.`);
             }
         }
     }
