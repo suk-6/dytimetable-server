@@ -43,7 +43,7 @@ class TimetableService {
         const todayTimetableByClass = timetable[grade][classroom][now.getDay() - 1];
         for (let period = 0; period < todayTimetableByClass.length; period++) {
             if (['체육A', '체육B', '스포츠'].includes(todayTimetableByClass[period]["subject"])) {
-                return period;
+                return todayTimetableByClass[period]["classTime"];
             }
         }
 
@@ -62,7 +62,7 @@ class TimetableService {
                 for (let classroom = 1; classroom <= Object.keys(timetable[grade]).length; classroom++) {
                     const period = await this.checkSportsDay(grade, classroom);
                     if (period !== null) {
-                        push.sendNotificationByTopic(`${grade}-${classroom}`, `체육복 알림`, `오늘 ${parseInt(period) + 1}교시에 체육이 있습니다. 체육복을 챙겨주세요.`);
+                        push.sendNotificationByTopic(`${grade}-${classroom}`, `체육복 알림`, `오늘 ${period}교시에 체육이 있습니다. 체육복을 챙겨주세요.`);
                     }
                 }
             }
