@@ -55,10 +55,9 @@ class TimetableService {
         if (now.getDay() === 0 || now.getDay() === 6) return;
 
         const morningTime = await this.getMonringTime();
-        const timetable = await this.timetable.getTimetable();
-        console.log("🚀 ~ TimetableService ~ sendSportsAlert ~ timetable:", timetable)
 
         if (now.getHours() === morningTime.getHours() && now.getMinutes() === morningTime.getMinutes()) {
+            const timetable = await this.timetable.getTimetable();
             for (let grade = 1; grade <= Object.keys(timetable).length; grade++) {
                 for (let classroom = 1; classroom <= Object.keys(timetable[grade]).length; classroom++) {
                     const period = await this.checkSportsDay(grade, classroom);
