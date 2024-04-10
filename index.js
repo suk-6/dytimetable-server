@@ -1,6 +1,7 @@
 const Timetable = require('comcigan-parser');
 const cron = require("node-cron");
 const push = require('./push');
+const { isHoliday } = require('@hyunbinseo/holidays-kr');
 require("dotenv").config();
 
 class TimetableService {
@@ -103,7 +104,10 @@ class TimetableService {
     async setSchedule() {
         console.log("Setting schedule...")
         cron.schedule("* 6-17 * * 1-5", async () => {
+            if (isHoliday(new Date())) return;
+
             this.sendSportsAlert();
+
             const period = await this.checkClassTime();
             if (period === undefined) return;
 

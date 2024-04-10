@@ -148,6 +148,11 @@
     protobufjs "^7.2.4"
     yargs "^17.7.2"
 
+"@hyunbinseo/holidays-kr@^2.2024.4":
+  version "2.2024.4"
+  resolved "https://registry.yarnpkg.com/@hyunbinseo/holidays-kr/-/holidays-kr-2.2024.4.tgz#0d5fb08b3dd3d73fd515dbf0e1c2ebdf37a92df9"
+  integrity sha512-eeImVHzdg55NFn/TWBF6YwWAQarmHJgmFzvlQajW1lcEJ/2VA7ZMQsiUZo/xutzKe9MBW+4EQRrOZNw5fmpbRQ==
+
 "@js-sdsl/ordered-map@^4.4.2":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@js-sdsl/ordered-map/-/ordered-map-4.4.2.tgz#9299f82874bab9e4c7f9c48d865becbfe8d6907c"
