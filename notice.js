@@ -3,11 +3,55 @@ require('./schemas');
 
 class NoticeService {
     constructor() {
-        this.createNotice('system', 'system님의 공지입니다.', '테스트 메세지입니다.', '1-10');
+        this.createNotice('system', 'system님의 공지입니다.', '테스트 메세지입니다.', 'all');
+    }
+
+    async getNoticebyId(id) {
+        const notice = await Notice.findById(id);
+        return notice;
+    }
+
+    async getEveryoneNotice() {
+        const notices = await Notice.find({ receiver: 'all' }).sort({ createdAt: -1 });
+
+        const result = [];
+
+        for (const notice of notices) {
+            const elapsedTime = await this.elapsedTime(notice.createdAt);
+            result.push([notice._id, notice.title, notice.content, elapsedTime]);
+        }
+
+        return result;
+    }
+
+    async getNoticebySender(sender) {
+        const notices = await Notice.find({ sender }).sort({ createdAt: -1 });
+
+        const result = [];
+
+        for (const notice of notices) {
+            const elapsedTime = await this.elapsedTime(notice.createdAt);
+            result.push([notice._id, notice.title, notice.content, elapsedTime]);
+        }
+
+        return result;
+    }
+
+    async getNoticebyReceiver(receiver) {
+        const notices = await Notice.find({ receiver }).sort({ createdAt: -1 });
+
+        const result = [];
+
+        for (const notice of notices) {
+            const elapsedTime = await this.elapsedTime(notice.createdAt);
+            result.push([notice._id, notice.title, notice.content, elapsedTime]);
+        }
+
+        return result;
     }
 
     async getNoticebyClassroom(grade, classroom) {
-        const notices = await Notice.find({ receiver: `${grade}-${classroom}` }).sort({ createdAt: -1 });
+        const notices = await Notice.find({ $or: [{ receiver: `${grade}-${classroom}` }, { receiver: 'all' }] }).sort({ createdAt: -1 });
 
         const result = [];
 
