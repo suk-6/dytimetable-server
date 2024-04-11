@@ -6,7 +6,7 @@ class NoticeService {
         this.createNotice('system', 'system님의 공지입니다.', '테스트 메세지입니다.', '1-10');
     }
 
-    async getNotice(grade, classroom) {
+    async getNoticebyClassroom(grade, classroom) {
         const notices = await Notice.find({ receiver: `${grade}-${classroom}` }).sort({ createdAt: -1 });
 
         const result = [];

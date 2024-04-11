@@ -43,7 +43,7 @@ app.get('/getmeal', async (req, res) => {
 
 app.get('/getnotice/:grade/:classroom', async (req, res) => {
     const { grade, classroom } = req.params;
-    const notice = await noticeService.getNotice(grade, classroom);
+    const notice = await noticeService.getNoticebyClassroom(grade, classroom);
     res.json(notice);
 });
 
