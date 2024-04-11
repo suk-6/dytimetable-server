@@ -2,7 +2,9 @@ const Notice = require('./schemas/notice');
 require('./schemas');
 
 class NoticeService {
-    constructor() { }
+    constructor() {
+        this.createNotice('system', 'system님의 공지입니다.', '테스트 메세지입니다.', '1-10');
+    }
 
     async getNotice(grade, classroom) {
         const notices = await Notice.find({ receiver: `${grade}-${classroom}` }).sort({ createdAt: -1 });
@@ -46,4 +48,4 @@ class NoticeService {
     }
 }
 
-new NoticeService();
+module.exports = NoticeService;

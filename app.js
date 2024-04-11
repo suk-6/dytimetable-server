@@ -7,6 +7,9 @@ const timetableService = new TimetableService();
 const NeisService = require('./meal');
 const neisService = new NeisService();
 
+const NoticeService = require('./notice');
+const noticeService = new NoticeService();
+
 app.get('/', async (req, res) => {
     res.redirect('https://github.com/suk-6/dytimetable');
 });
@@ -40,9 +43,8 @@ app.get('/getmeal', async (req, res) => {
 
 app.get('/getnotice/:grade/:classroom', async (req, res) => {
     const { grade, classroom } = req.params;
-    // const notice = await timetableService.getNotice();
-    // res.json(notice[grade][classroom]);
-    res.json([[0, "OOO 선생님의 메세지", "테스트 본문 내용\n테스트테스트\n테스트123123\nasdfasdfs", "1시간 전"], [1, "OOO 선생님의 메세지 2", "테스트 본문 내용 2", "5분 전"]]);
+    const notice = await noticeService.getNotice(grade, classroom);
+    res.json(notice);
 });
 
 app.listen(3000, () => {
