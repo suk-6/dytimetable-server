@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const TimetableService = require('./index');
+const TimetableService = require('./table');
 const timetableService = new TimetableService();
 
 const NeisService = require('./meal');
