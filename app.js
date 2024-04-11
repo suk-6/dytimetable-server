@@ -38,6 +38,13 @@ app.get('/getmeal', async (req, res) => {
     res.json(data);
 });
 
+app.get('/getnotice/:grade/:classroom', async (req, res) => {
+    const { grade, classroom } = req.params;
+    // const notice = await timetableService.getNotice();
+    // res.json(notice[grade][classroom]);
+    res.json([[0, "OOO 선생님의 메세지", "테스트 본문 내용"], [1, "OOO 선생님의 메세지 2", "테스트 본문 내용 2"]]);
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
