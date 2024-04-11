@@ -42,7 +42,7 @@ app.get('/getnotice/:grade/:classroom', async (req, res) => {
     const { grade, classroom } = req.params;
     // const notice = await timetableService.getNotice();
     // res.json(notice[grade][classroom]);
-    res.json([[0, "OOO 선생님의 메세지", "테스트 본문 내용"], [1, "OOO 선생님의 메세지 2", "테스트 본문 내용 2"]]);
+    res.json([[0, "OOO 선생님의 메세지", "테스트 본문 내용", "5분 전"], [1, "OOO 선생님의 메세지 2", "테스트 본문 내용 2", "1시간 전"]]);
 });
 
 app.listen(3000, () => {
