@@ -74,7 +74,7 @@ class ComciganTeacherParser {
                     const classroomNo = classroom % 100;
                     const subject = Math.floor(data / separator) % separator;
                     const result = {
-                        teacherName,
+                        teacher: teacherName,
                         weekday,
                         weekdayString: this._weekdayString[weekday],
                         period,
