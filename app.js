@@ -54,6 +54,18 @@ app.get('/getmeal', async (req, res) => {
     res.json(data);
 });
 
+app.post('/sendnotice', async (req, res) => {
+    const { sender, title, content, password, receiver } = req.body;
+
+    if (password !== process.env.NOTICE_PASSWORD) {
+        res.send('비밀번호 오류입니다.');
+        return;
+    }
+
+    noticeService.createNotice(sender, title, content, receiver);
+    res.send('success');
+});
+
 app.get('/getnotice/:grade/:classroom', async (req, res) => {
     const { grade, classroom } = req.params;
     const notice = await noticeService.getNoticebyClassroom(grade, classroom);

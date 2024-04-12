@@ -4,9 +4,12 @@ const push = require('./push');
 const { isHoliday } = require('@hyunbinseo/holidays-kr');
 require("dotenv").config();
 
+const TeacherService = require('./teacher');
+
 class TimetableService {
-    constructor(timetable = new Timetable()) {
+    constructor(timetable = new Timetable(), teacherService = new TeacherService()) {
         this.timetable = timetable;
+        this.teacherService = teacherService;
         timetable.init().then(() => {
             timetable.setSchool(process.env.SCHOOL_CODE);
             this.classTimes = timetable.getClassTime();
@@ -37,6 +40,22 @@ class TimetableService {
 
                 push.sendNotificationByTopic(`${grade}-${classroom}`, `다음 시간 알림`, `${classTime}교시 [${subject}] 입니다.`);
             }
+        }
+    }
+
+    async sendTimetableTeacher(period) {
+        const now = new Date();
+        const teachers = this.teacherService.getTeachers();
+
+        this.teacherService.parser.renewData();
+
+        for (let i = 1; i < teachers.length; i++) {
+            const timetable = await this.teacherService.getTimetableByTeacherNo(i);
+            const todayTimetable = timetable[now.getDay() - 1];
+            if (todayTimetable[period] === null) continue;
+
+            const periodData = todayTimetable[period];
+            push.sendNotificationByTopic(`teacher-${i}`, `다음 수업 알림`, `${periodData["period"]}교시 [${periodData["grade"]}-${periodData["classroom"]} ${periodData["subject"]}] 입니다.`);
         }
     }
 
@@ -112,6 +131,7 @@ class TimetableService {
             if (period === undefined) return;
 
             this.sendTimetable(period);
+            this.sendTimetableTeacher(period);
         });
     }
 }
