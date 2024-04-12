@@ -22,7 +22,8 @@ class PushService {
                 priority: "high",
                 ttl: 10 * 60 * 1000, // 10 minutes
                 notification: {
-                    sound: "default"
+                    sound: "default",
+                    priority: "high",
                 }
             },
             apns: {
