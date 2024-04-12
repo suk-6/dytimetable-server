@@ -40,16 +40,6 @@ class PushService {
         }
     }
 
-    async sendNotificationToAll(title, body, data) {
-        const message = await this.messageGenerator(title, body, 'all', data);
-
-        try {
-            await admin.messaging().send(message);
-        } catch (error) {
-            console.error('Error sending message:', error);
-        }
-    }
-
     async sendNotificationByTopic(topic, title, body, data) {
         const message = await this.messageGenerator(title, body, topic, data);
 
