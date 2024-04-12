@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 const TimetableService = require('./table');
 const timetableService = new TimetableService();
@@ -12,6 +13,8 @@ const noticeService = new NoticeService();
 
 const TeacherService = require('./teacher');
 const teacherService = new TeacherService();
+
+app.use(bodyParser.json());
 
 app.get('/', async (req, res) => {
     res.redirect('https://github.com/suk-6/dytimetable');
