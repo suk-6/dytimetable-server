@@ -55,6 +55,7 @@ app.get('/getmeal', async (req, res) => {
 });
 
 app.post('/sendnotice', async (req, res) => {
+    console.log(req.body);
     const { sender, title, content, password, receiver } = req.body;
 
     if (password !== process.env.NOTICE_PASSWORD) {
