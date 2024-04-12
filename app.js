@@ -28,8 +28,13 @@ app.get('/getTeachers', async (req, res) => {
 
 app.get('/getTable/:grade/:classroom', async (req, res) => {
     const { grade, classroom } = req.params;
-    const timetable = await timetableService.getTimetable();
-    res.json(timetable[grade][classroom]);
+    if (grade == 'teacher') {
+        const timatable = await teacherService.getTimetableByTeacherNo(classroom);
+        res.json(timatable);
+    } else {
+        const timetable = await timetableService.getTimetable();
+        res.json(timetable[grade][classroom]);
+    }
 });
 
 app.get('/getmeal', async (req, res) => {

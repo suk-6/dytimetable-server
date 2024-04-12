@@ -1,4 +1,5 @@
 require('dotenv').config();
+const fs = require('fs');
 
 class ComciganTeacherParser {
     constructor() {
@@ -8,6 +9,9 @@ class ComciganTeacherParser {
 
         this.init().then(() => {
             this._init = true;
+            // this.getAllTimetable().then((value) => {
+            //     fs.writeFileSync('timetable.json', JSON.stringify(value));
+            // });
         });
     }
 
@@ -46,7 +50,7 @@ class ComciganTeacherParser {
             result.push(await this.getTimetableByTeacherNo(teacherNo));
         }
 
-        console.log(result);
+        return result;
     }
 
     async getTimetableByTeacherNo(teacherNo) {
@@ -59,7 +63,10 @@ class ComciganTeacherParser {
         const results = [];
 
         for (let weekday = 1; weekday <= 5; weekday++) {
+            results.push([]);
             for (let period = 1; period <= 7; period++) {
+                results[weekday - 1].push(null);
+
                 const data = teacherTable[weekday][period]
                 if (data > 100) {
                     const classroom = data % separator;
@@ -76,7 +83,7 @@ class ComciganTeacherParser {
                         subject: this._data['자료492'][subject]
                     }
 
-                    results.push(result);
+                    results[weekday - 1][period - 1] = result;
                 }
             }
         }

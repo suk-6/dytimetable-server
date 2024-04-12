@@ -8,6 +8,10 @@ class TeacherService {
     async getTeachers() {
         return await this.parser.getTeachers();
     }
+
+    async getTimetableByTeacherNo(teacherNo) {
+        return await this.parser.getTimetableByTeacherNo(teacherNo);
+    }
 }
 
 module.exports = TeacherService;
