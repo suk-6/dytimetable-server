@@ -66,7 +66,7 @@ app.post('/sendnotice', async (req, res) => {
     }
 
     noticeService.createNotice(sender, title, content, receiver);
-    res.send('success');
+    res.send('전송에 성공했습니다.');
 });
 
 app.get('/getnotice/:grade/:classroom', async (req, res) => {
