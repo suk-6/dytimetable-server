@@ -8,7 +8,6 @@ class ComciganTeacherParser {
 
         this.init().then(() => {
             this._init = true;
-            this.getAllTimetable();
         });
     }
 
