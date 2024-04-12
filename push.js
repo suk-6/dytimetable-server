@@ -24,6 +24,7 @@ class PushService {
                 notification: {
                     sound: "default",
                     priority: "high",
+                    visibility: "public",
                 }
             },
             apns: {
