@@ -69,7 +69,7 @@ app.post('/sendnotice', async (req, res) => {
 
     noticeService.createNotice(sender, title, content, receiver).then((data) => {
         push.sendNotificationByTopic(receiver, title, content);
-    })
+    });
 
     res.send('전송에 성공했습니다.');
 });
