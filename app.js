@@ -10,12 +10,20 @@ const neisService = new NeisService();
 const NoticeService = require('./notice');
 const noticeService = new NoticeService();
 
+const TeacherService = require('./teacher');
+const teacherService = new TeacherService();
+
 app.get('/', async (req, res) => {
     res.redirect('https://github.com/suk-6/dytimetable');
 });
 
 app.get('/install', async (req, res) => {
     res.sendFile(__dirname + '/static/install.html');
+});
+
+app.get('/getTeachers', async (req, res) => {
+    const teachers = await teacherService.getTeachers();
+    res.json(teachers);
 });
 
 app.get('/getTable/:grade/:classroom', async (req, res) => {
