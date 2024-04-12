@@ -14,6 +14,8 @@ const noticeService = new NoticeService();
 const TeacherService = require('./teacher');
 const teacherService = new TeacherService();
 
+const push = require('./push');
+
 app.use(bodyParser.json());
 
 app.get('/', async (req, res) => {
@@ -65,7 +67,10 @@ app.post('/sendnotice', async (req, res) => {
         return;
     }
 
-    noticeService.createNotice(sender, title, content, receiver);
+    noticeService.createNotice(sender, title, content, receiver).then((data) => {
+        push.sendNotificationByTopic(receiver, title, content);
+    })
+
     res.send('전송에 성공했습니다.');
 });
 
