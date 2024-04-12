@@ -2,9 +2,7 @@ const Notice = require('./schemas/notice');
 require('./schemas');
 
 class NoticeService {
-    constructor() {
-        this.createNotice('system', 'system님의 공지입니다.', '테스트 메세지입니다.', 'all');
-    }
+    constructor() { }
 
     async getNoticebyId(id) {
         const notice = await Notice.findById(id);
