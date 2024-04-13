@@ -6,6 +6,7 @@ class ComciganTeacherParser {
         this._init = false;
         this._data = null;
         this._weekdayString = ['일', '월', '화', '수', '목', '금', '토'];
+        this.renewTime = null;
 
         this.init().then(() => {
             this._init = true;
@@ -19,7 +20,10 @@ class ComciganTeacherParser {
         return;
     }
 
-    async renewData() {
+    async renewData(force = false) {
+        if (this.renewTime != null && this._data != null && new Date() - this.renewTime < 1000 * 60 * 10 && !force)
+            return;
+
         this._data = await this.getComciganData();
     }
 
@@ -29,6 +33,8 @@ class ComciganTeacherParser {
             .then(res => res.text())
             .then(data => data.substr(0, data.lastIndexOf('}') + 1))
             .then(data => JSON.parse(data))
+
+        this.renewTime = new Date();
 
         return data;
     }

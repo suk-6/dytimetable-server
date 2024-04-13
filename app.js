@@ -34,6 +34,7 @@ app.get('/getTeachers', async (req, res) => {
 app.get('/getTable/:grade/:classroom', async (req, res) => {
     const { grade, classroom } = req.params;
     if (grade == 'teacher') {
+        teacherService.parser.renewData();
         const timatable = await teacherService.getTimetableByTeacherNo(classroom);
         res.json(timatable);
     } else {
