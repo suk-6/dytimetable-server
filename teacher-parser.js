@@ -55,7 +55,7 @@ class ComciganTeacherParser {
         if (!this._init) return;
 
         const teacherName = this._data['자료446'][teacherNo]
-        const teacherTable = this._data['자료542'][teacherNo];
+        const teacherTable = this._data['시간표2'][teacherNo];
         const separator = this._data['분리'];
 
         const results = [];
