@@ -25,6 +25,7 @@ class ComciganTeacherParser {
             return;
 
         this._data = await this.getComciganData();
+        this.renewTime = new Date();
         console.log('Teacher data renewed');
 
         return;
@@ -36,8 +37,6 @@ class ComciganTeacherParser {
             .then(res => res.text())
             .then(data => data.substr(0, data.lastIndexOf('}') + 1))
             .then(data => JSON.parse(data))
-
-        this.renewTime = new Date();
 
         return data;
     }
