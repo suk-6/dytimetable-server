@@ -26,6 +26,8 @@ class ComciganTeacherParser {
 
         this._data = await this.getComciganData();
         console.log('Teacher data renewed');
+
+        return;
     }
 
     async getComciganData() {

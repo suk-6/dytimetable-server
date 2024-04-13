@@ -47,7 +47,7 @@ class TimetableService {
         const now = new Date();
         const teachers = this.teacherService.getTeachers();
 
-        this.teacherService.parser.renewData(true);
+        await this.teacherService.parser.renewData(true);
 
         for (let i = 1; i < teachers.length; i++) {
             const timetable = await this.teacherService.getTimetableByTeacherNo(i);
