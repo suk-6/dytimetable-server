@@ -9,9 +9,7 @@ class ComciganTeacherParser {
 
         this.init().then(() => {
             this._init = true;
-            // this.getAllTimetable().then((value) => {
-            //     fs.writeFileSync('timetable.json', JSON.stringify(value));
-            // });
+            // fs.writeFileSync('timetable.json', JSON.stringify(this._data));
         });
     }
 
