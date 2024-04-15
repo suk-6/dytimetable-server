@@ -45,7 +45,7 @@ class TimetableService {
 
     async sendTimetableTeacher(period) {
         const now = new Date();
-        const teachers = this.teacherService.getTeachers();
+        const teachers = await this.teacherService.getTeachers();
 
         await this.teacherService.parser.renewData(true);
 
