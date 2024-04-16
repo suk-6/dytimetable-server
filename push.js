@@ -46,7 +46,9 @@ class PushService {
         const message = await this.messageGenerator(title, body, topic, data);
 
         try {
-            await admin.messaging().send(message);
+            await admin.messaging().send(message).then((response) => {
+                console.log('Successfully sent message:', message, response);
+            });
         } catch (error) {
             console.error('Error sending message:', error);
         }
