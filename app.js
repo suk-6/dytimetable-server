@@ -81,6 +81,16 @@ app.get('/getnotice/:grade/:classroom', async (req, res) => {
     res.json(notice);
 });
 
+app.post('/checkpassword', async (req, res) => {
+    const { password } = req.body;
+
+    if (password === process.env.NOTICE_PASSWORD) {
+        res.send('true');
+    } else {
+        res.send('false');
+    }
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
