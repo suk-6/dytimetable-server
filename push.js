@@ -47,7 +47,7 @@ class PushService {
 
         try {
             await admin.messaging().send(message).then((response) => {
-                console.log('Successfully sent message:', message, response);
+                console.log(new Date(), topic, body, response);
             });
         } catch (error) {
             console.error('Error sending message:', error);
