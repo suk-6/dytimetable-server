@@ -2,3 +2,6 @@
 .env.db
 firebase.json
 timetable.json
+
+.idea
+/requests/http-client.private.env.json
