@@ -16,11 +16,17 @@ class TimetableService {
             this.setSchedule();
             this.isSetted = true;
         });
+
+        this._alertDisableDay = [
+            '2024-4-22', // 1학기 1차 지필고사
+            '2024-4-23', // 1학기 1차 지필고사
+            '2024-4-24', // 1학기 1차 지필고사
+        ]
     }
 
     async getTimetable() {
         if (!this.isSetted) {
-            return "Timetable is not setted yet.";
+            return "Timetable is not set yet.";
         }
         return await this.timetable.getTimetable();
     }
@@ -76,7 +82,7 @@ class TimetableService {
         const now = new Date();
         if (now.getDay() === 0 || now.getDay() === 6) return;
 
-        const morningTime = await this.getMonringTime();
+        const morningTime = await this.getMorningTime();
 
         if (now.getHours() === morningTime.getHours() && now.getMinutes() === morningTime.getMinutes()) {
             const timetable = await this.timetable.getTimetable();
@@ -91,7 +97,7 @@ class TimetableService {
         }
     }
 
-    async getMonringTime() {
+    async getMorningTime() {
         const now = new Date();
         now.setHours(7);
         now.setMinutes(0);
@@ -120,10 +126,22 @@ class TimetableService {
         return;
     }
 
+    isAlertDisableDay(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+
+        const dayString = `${year}-${month}-${day}`;
+
+        return this._alertDisableDay.includes(dayString);
+    }
+
     async setSchedule() {
         console.log("Setting schedule...")
         cron.schedule("* 6-17 * * 1-5", async () => {
-            if (isHoliday(new Date())) return;
+            const now = new Date()
+            if (isHoliday(now)) return;
+            if (this.isAlertDisableDay(now)) return;
 
             this.sendSportsAlert();
 
