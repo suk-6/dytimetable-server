@@ -122,8 +122,6 @@ class TimetableService {
                 return i.toString();
             }
         }
-
-        return;
     }
 
     isAlertDisableDay(date) {
