@@ -54,7 +54,7 @@ class PushService {
             }
         }
 
-        if (type === "period") message.apns.headers["apns-id"] = type;
+        // if (type === "period") message.apns.headers["apns-id"] = type;
 
         return message;
     }
