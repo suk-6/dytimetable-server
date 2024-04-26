@@ -3,12 +3,6 @@ require('./schemas');
 
 class NoticeService {
     constructor() { }
-
-    async getNoticebyId(id) {
-        const notice = await Notice.findById(id);
-        return notice;
-    }
-
     async getEveryoneNotice() {
         const notices = await Notice.find({ receiver: 'all' }).sort({ createdAt: -1 });
 

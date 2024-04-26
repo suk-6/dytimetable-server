@@ -44,7 +44,7 @@ class TimetableService {
 
                 const classTime = todayTimetableByClass[period]["classTime"];
 
-                push.sendNotificationByTopic(`${grade}-${classroom}`, `다음 시간 알림`, `${classTime}교시 [${subject}] 입니다.`);
+                push.sendNotificationByTopic("period",`${grade}-${classroom}`, `다음 시간 알림`, `${classTime}교시 [${subject}] 입니다.`);
             }
         }
     }
@@ -61,7 +61,7 @@ class TimetableService {
             if (todayTimetable[period] === null) continue;
 
             const periodData = todayTimetable[period];
-            push.sendNotificationByTopic(`teacher-${i}`, `다음 수업 알림`, `${periodData["period"]}교시 [${periodData["grade"]}-${periodData["classroom"]} ${periodData["subject"]}] 입니다.`);
+            push.sendNotificationByTopic('period', `teacher-${i}`, `다음 수업 알림`, `${periodData["period"]}교시 [${periodData["grade"]}-${periodData["classroom"]} ${periodData["subject"]}] 입니다.`);
         }
     }
 
@@ -90,7 +90,7 @@ class TimetableService {
                 for (let classroom = 1; classroom <= Object.keys(timetable[grade]).length; classroom++) {
                     const period = await this.checkSportsDay(grade, classroom);
                     if (period !== null) {
-                        push.sendNotificationByTopic(`${grade}-${classroom}`, `체육복 알림`, `오늘 ${period}교시에 체육이 있습니다. 체육복을 챙겨주세요.`);
+                        push.sendNotificationByTopic('period', `${grade}-${classroom}`, `체육복 알림`, `오늘 ${period}교시에 체육이 있습니다. 체육복을 챙겨주세요.`);
                     }
                 }
             }

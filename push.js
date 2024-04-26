@@ -10,27 +10,40 @@ class PushService {
         });
     }
 
-    async messageGenerator(title, body, topic, data) {
-        return {
+    async messageGenerator(title, body, topic, data, type) {
+        if (data === undefined) data = {
+            title: title,
+            body: body
+        };
+        else {
+            data["title"] = title;
+            data["body"] = body;
+        }
+
+        let message = {
             notification: {
                 title,
                 body
             },
             topic,
-            data: data || {},
+            data: data,
             android: {
+                collapseKey: type,
                 priority: "high",
                 ttl: 10 * 60 * 1000, // 10 minutes
                 notification: {
+                    tag: type === "period" ? type : null,
                     sound: "default",
                     priority: "high",
                     visibility: "public",
+                    channelId: "high_importance_channel",
                 }
             },
             apns: {
                 headers: {
                     "apns-priority": "10",
                     "apns-expiration": "600", // 10 minutes
+                    "apns-collapse-id": type,
                 },
                 payload: {
                     aps: {
@@ -40,10 +53,14 @@ class PushService {
                 }
             }
         }
+
+        if (type === "period") message.apns.headers["apns-id"] = type;
+
+        return message;
     }
 
-    async sendNotificationByTopic(topic, title, body, data) {
-        const message = await this.messageGenerator(title, body, topic, data);
+    async sendNotificationByTopic(type, topic, title, body, data) {
+        const message = await this.messageGenerator(title, body, topic, data, type);
 
         try {
             await admin.messaging().send(message).then((response) => {

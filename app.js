@@ -33,7 +33,7 @@ app.get('/getTeachers', async (req, res) => {
 
 app.get('/getTable/:grade/:classroom', async (req, res) => {
     const { grade, classroom } = req.params;
-    if (grade == 'teacher') {
+    if (grade === 'teacher') {
         teacherService.parser.renewData();
         const timatable = await teacherService.getTimetableByTeacherNo(classroom);
         res.json(timatable);
@@ -69,7 +69,7 @@ app.post('/sendnotice', async (req, res) => {
     }
 
     noticeService.createNotice(sender, title, content, receiver).then((data) => {
-        push.sendNotificationByTopic(receiver, title, content);
+        push.sendNotificationByTopic("notice", receiver, title, content);
     });
 
     res.send('전송에 성공했습니다.');
