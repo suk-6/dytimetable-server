@@ -21,6 +21,7 @@ class TimetableService {
             '2024-4-22', // 1학기 1차 지필고사
             '2024-4-23', // 1학기 1차 지필고사
             '2024-4-24', // 1학기 1차 지필고사
+            '2024-6-6', // 현충일
         ]
     }
 
@@ -44,7 +45,7 @@ class TimetableService {
 
                 const classTime = todayTimetableByClass[period]["classTime"];
 
-                push.sendNotificationByTopic("period",`${grade}-${classroom}`, `다음 시간 알림`, `${classTime}교시 [${subject}] 입니다.`);
+                push.sendNotificationByTopic("period", `${grade}-${classroom}`, `다음 시간 알림`, `${classTime}교시 [${subject}] 입니다.`);
             }
         }
     }
