@@ -43,7 +43,6 @@ class PushService {
                 headers: {
                     "apns-priority": "10",
                     "apns-expiration": "600", // 10 minutes
-                    "apns-collapse-id": type,
                 },
                 payload: {
                     aps: {
