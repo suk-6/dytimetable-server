@@ -62,9 +62,9 @@ class PushService {
         const message = await this.messageGenerator(title, body, topic, data, type);
 
         try {
-            await admin.messaging().send(message).then((response) => {
-                console.log(new Date(), topic, body, response);
-            });
+            // await admin.messaging().send(message).then((response) => {
+            //     console.log(new Date(), topic, body, response);
+            // });
         } catch (error) {
             console.error('Error sending message:', error);
         }
